@@ -7,10 +7,9 @@ import base64
 import queue
 from ThreadingQueue import ThreadingQueue
 
-def extractFrames(fileName, color_frames, maxFramesToLoad=9999):
+def extractFrames(fileName, color_frames):
     # Initialize frame count
     count = 0
-    global extractionDone
     # open video file
     vidcap = cv2.VideoCapture(fileName)
 
@@ -27,6 +26,7 @@ def extractFrames(fileName, color_frames, maxFramesToLoad=9999):
         count += 1
 
     print('Frame extraction complete')
+    color_frames.enqueue('$')
 
 
 def convertToGray(color_frames, gray_frames):
@@ -36,6 +36,9 @@ def convertToGray(color_frames, gray_frames):
 
         inputFrame = color_frames.dequeue()
 
+        if inputFrame == '$':
+            break
+
         # convert the image to grayscale
         grayscaleFrame = cv2.cvtColor(inputFrame, cv2.COLOR_BGR2GRAY)
 
@@ -43,6 +46,7 @@ def convertToGray(color_frames, gray_frames):
 
         count += 1
 
+    gray_frames.enqueue('$')
 
 def displayFrames(grey_frames):
     # initialize frame count
@@ -52,6 +56,9 @@ def displayFrames(grey_frames):
     while True:
         # get the next frame
         frame = grey_frames.dequeue()
+
+        if frame == '$':
+            break
 
         print(f'Displaying frame {count}')
 

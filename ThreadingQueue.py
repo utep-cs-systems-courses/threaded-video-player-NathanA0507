@@ -15,7 +15,6 @@ class ThreadingQueue:
         self.lock.release()
         self.full.release()
 
-
     def dequeue(self):
         self.full.acquire()
         self.lock.acquire()
