@@ -1,3 +1,11 @@
+# My Lab
+There are really only 2 files used within this lab, ThreadingQueue.py and ExtractAndDisplayGrayscale.py. 
+ThreadingQueue.py is a thread-safe producer/consumer queue and ExtractAndDisplayGrayscale.py has the logic
+for starting threads and displaying the file
+
+
+
+
 # Producer Consumer Lab
 
 For this lab you will implement a trivial producer-consumer system using
