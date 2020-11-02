@@ -4,7 +4,7 @@ class ThreadingQueue:
 
     def __init__(self):
         self.queue = []
-        self.empty = threading.Semaphore(24)
+        self.empty = threading.Semaphore(10)
         self.full = threading.Semaphore(0)
         self.lock = threading.Lock()
 
